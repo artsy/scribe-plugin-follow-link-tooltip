@@ -176,9 +176,7 @@
         var selection = new scribe.api.Selection(),
         node = selectAnchorContent(selection),
         content = node && node.getAttribute('href') || ''; // ! not node.href as that would be expanded
-        console.log($(node).html())
         if($(node).hasClass('is-jump-link') || $(node).hasClass('is-follow-link')){
-          console.log('returning')
           return
         }
         showTooltip('edit', selection, node, content, function (newHref) {
