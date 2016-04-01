@@ -1,0 +1,26 @@
+{
+  "name": "scribe-plugin-follow-link-tooltip",
+  "version": "1.0.1",
+  "description": "A Scribe plugin for creating special follow links",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artsy/scribe-plugin-follow-link-tooltip.git"
+  },
+  "keywords": [
+    "scribe",
+    "plugin",
+    "follow",
+    "link",
+    "tooltip"
+  ],
+  "author": "Kana Abe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artsy/scribe-plugin-follow-link-tooltip/issues"
+  },
+  "homepage": "https://github.com/artsy/scribe-plugin-follow-link-tooltip#readme"
+}

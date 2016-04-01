@@ -235,8 +235,6 @@
       followLinkTooltipCommand.queryState = queryState;
       followLinkTooltipCommand.execute = executeCommand.bind(followLinkTooltipCommand);
 
-      ui.editBtn.addEventListener('click', executeCommand);
-
       // bubbling up when switching from another editable link
       scribe.el.addEventListener(namespace + '-query-state', queryState);
     };
