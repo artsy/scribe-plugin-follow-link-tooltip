@@ -1,6 +1,6 @@
 {
   "name": "scribe-plugin-follow-link-tooltip",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Scribe plugin for creating special follow links",
   "main": "index.js",
   "scripts": {
