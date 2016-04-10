@@ -185,15 +185,24 @@
           if (newHref === '') {
             new scribe.api.Command('unlink').execute();
           } else {
-            var fullString = selection.selection.baseNode.textContent
-            var startOffset = selection.range.startOffset
-            var numOfChar = selection.range.endOffset - startOffset
-            var replace = fullString.substr(startOffset, numOfChar)
-            var artistSlug = newHref.split("/artist/")[1]
-            replace = "<a href='"+ newHref + "' class='is-follow-link'>" + replace + "</a>" +
-              "<a data-id='"+ artistSlug + "' class='entity-follow artist-follow'></a>"
-            var newHtml = splice(fullString, startOffset, numOfChar, replace);
-            $(selection.selection.baseNode).replaceWith(newHtml);
+            if (selection.selection.baseNode.parentElement.nodeName === 'A'){
+              var parent = selection.selection.baseNode.parentElement
+              parent.classList.add('is-follow-link')
+              parent.setAttribute('href',newHref)
+              var artistSlug = newHref.split("/artist/")[1]
+              var append = "<a data-id='"+ artistSlug + "' class='entity-follow artist-follow'></a>"
+              parent.insertAdjacentHTML('afterend',append)
+            }else{
+              var fullString = selection.selection.baseNode.textContent
+              var startOffset = selection.range.startOffset
+              var numOfChar = selection.range.endOffset - startOffset
+              var replace = fullString.substr(startOffset, numOfChar)
+              var artistSlug = newHref.split("/artist/")[1]
+              replace = "<a href='"+ newHref + "' class='is-follow-link'>" + replace + "</a>" +
+                "<a data-id='"+ artistSlug + "' class='entity-follow artist-follow'></a>"
+              var newHtml = splice(fullString, startOffset, numOfChar, replace);
+              $(selection.selection.baseNode).replaceWith(newHtml);
+            }
           }
           scribe.el.focus();
           getSelection().collapseToEnd();
@@ -213,7 +222,6 @@
           return isEditState || selection.getContaining(function (node) {
             if (node.nodeName === 'A' && !isEditState && $(node).parents('.edit-section-text-editable').length > 0 && !$(node).hasClass('is-jump-link') && $(node).hasClass('is-follow-link')) {
               showTooltip('view', selection, node, node.getAttribute('href'), function (newHref) {
-                debugger
                 var artistSlug = newHref.split("/artist/")[1]
                 $(node).next('a').data('id',artistSlug)
                 node.href = newHref;
